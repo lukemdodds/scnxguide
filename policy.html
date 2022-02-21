@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html>
+<title>Policies</title>
+<head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
+           <script src = "script.js" defer></script>
+        <script>
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+         crossorigin="anonymous"></script>
+</head>
+
+<header>
+<a href="index.html" class = "logo" data-text = "SIEM"><b>SIEM GUIDE</b></a>
+
+<!--<a href="index.html" class = "logo"><img src= "image2.png"></a>         ----- adding an image --> 
+
+<div class = "toggle" ></div>
+<!--<ul class = "menu">
+<li><a href="policy.html" ><b><center><i class="clipboard-outline">policy</i></center>POLICIES</b></a></li>
+<li><a href="tools.html" ><b><center><i class="clipboard-outline">build</i></center>TOOLS</b></a></li>
+<li><a href="logon.html" ><b><center><i class="clipboard-outline">login</i></center>LOGON TYPES</b></a></li>
+<li><a href="trustedip.html" ><b><center><i class="clipboard-outline">dns</i></center>IP LISTS</b></a></li>
+<li><a href="admins.html" ><b><center><i class="clipboard-outline">contact_mail</i></center>CONTACTS</b></a></li>
+</ul>-->
+
+<ul class = "menu">
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">OPTIONS <i class="fa fa-cog fa-spin" style="font-size:22px"></i></button>
+  <div id="myDropdown" class="dropdown-content">
+    <div></div>
+    <br>
+    <a href="policy.html"><center><i class="material-icons-round">policy</i></center>POLICIES</a>
+    <a href="tools.html"><center><i class="material-icons-round">construction</i></center>TOOLS</a>
+  </div>
+</div>
+</ul>
+</header>
+
+<section class = "policies">
+<div class = "textbox">
+<h3><i class="material-icons-round">policy</i><br>POLICIES</h3>
+<br>
+
+<input type="text" id="search" onkeyup="search()" placeholder="Search" >
+<br>
+<br>
+
+
+<div class="policys">
+<ul id = "policylist">
+
+<li><button type="button" class="collapsible">Abnormal Number of Connections on SMB or NETBIOS Ports - Next Gen Firewall</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "anocosnp"
+  value = "|STATS accountname ipaddress destinationaddress deviceaction destinationport devicecustomstring2" readonly>
+  <button onclick="anocosnp()" Copy> 
+  <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>VPN Connections</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Abnormal Amount of Data Transmitted from DNS ports - Next Gen Firewall </button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "amodtfdns"
+  value = "|STATS sourceaddress destinationaddress destinationport deviceaction categoryoutcome 
+" readonly >
+  <button onclick="amodtfdns()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check for malicious traffic, port should be 53 which is DNS. Look for anything that is high and if the IP address is malicious. </p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div></li>
+
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Abnormal Number of Process Execution Using Explicit Credentials </button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "anope"
+  value = "|STATS accountname destinationprocessname filepath message eventoutcome 
+" readonly >
+  <button onclick="anope()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check if admin account and check the proccess and their filepath.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Abnormal Number of Network Share Object Access </button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "anonsa"
+  value = "|STATS accountname ipaddress
+" readonly >
+  <button onclick="anonsa()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check if ip address is clean.</p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Account Modification by Non-Priveleged User Accounts </button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "ambnpua"
+  value = "|STATS accountname destinationusername message eventoutcome 
+" readonly >
+  <button onclick="ambnpua()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check if account is an admin. Sometimes users can change their password and is recognized as an admin modification. 
+  Check raw events and see when password was last set.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Account Activity From Multiple Countries in a Day</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "aafmciad"
+  value = "|STATS accountname ipaddress eventcountry resourcename filename " readonly >
+  <button onclick="aafmciad()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Monitor IP addresses and destinationhostnames on VirusTotal, Recorded Future and MXtoolbox.</p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Activity From Rare Geolocation</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "raregeo"
+  value = "|STATS accountname eventcity ipaddress sourceprocessname" readonly >
+  <button onclick="raregeo()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Monitor IP addresses and destinationhostnames on VirusTotal, Recorded Future and MXtoolbox.</p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Brute Force Attack to Same Host</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "brutalf"
+  value = "|STATS accountname destinationprocessname ipaddress devicehostname destinationhostname devicecustomstring6" readonly >
+  <button onclick="brutalf()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check amount of failed logins. Flag if greater than 80 or consecutive login failures each day. 
+Thin clients in Easton-Berry regularly have multiple failed logins. CHAP, Kerboros tickets and NtlmSpp.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Detection of Account with Admin Priveleges</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "dacwap"
+  value = "|STATS accountname message devicehostname eventoutcome" readonly >
+  <button onclick="dacwap()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>User can change their password and system will flag it as admin privileges. Check raw stats to see if password was changed.</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Firewall Traffic to Randomly Generated Domains</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "fttrgd"
+  value = "|STATS accountname ipaddress destinationaddress destinationhostname deviceaction destinationport" readonly >
+  <button onclick="fttrgd()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check destinationaddress on RecordedFuture, VirusTotal and MXToolBox. If traffic to a malicious domain/ip is successful,
+  notify customer. </p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li>
+ 
+
+<li class = "list-group-item"><button type="button" class="collapsible">Landspeed Anomaly - Cloud Content Management Systems</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "landsa"
+  value = "|STATS sourceusername eventcity ipaddress resourcename customstring3 filename" readonly >
+  <button onclick="landsa()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Monitor IP addresses and destinationhostnames on VirusTotal, Recorded Future and MXtoolbox.</p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Personal/Excessive Emails</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "emails"
+  value = "|STATS emailsender emailsubject emailrecipient eventoutcome filesize" readonly >
+  <button onclick="emails()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check file size (if size is 20-25million+) and if email subject appears to have confidential information or letters of resignation.  
+    If user sends multipe emails without subjects, monitor for further activity/add to watchlist.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Potential Pass-The-Hash: Key Length Analytic</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "ppth"
+  value = "|STATS message
+" readonly >
+  <button onclick="ppth()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check if all logon attempts failed.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Possible Impersonation</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "pi"
+  value = "|STATS accountname destinationprocessname message eventoutcome sourceusername 
+" readonly >
+  <button onclick="pi()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check accountname if admin. Check if destinationprocessname has $.</p>
+<br>
+</div>
+</li> 
+
+
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Possible Enumeration over LDAP Port - SIEM</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "peoldap"
+  value = "|STATS accountname deviceaction sourceaddress destinationaddress translatedipaddress sourceport 
+" readonly >
+  <button onclick="peoldap()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check sourceaddress for dodgy IP addresses, check deviceaction for what happened during the event, if source addresses are internal(private), 
+  check the translatedipaddress for the name and location. If there was a successful connection made contact the company IT administrator,
+  and notify them that a successful connection was made. Ask IT admins if they have any services running on the detected source port. </p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Possible Hexacorn-Style ShellCode Execution</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "phssce"
+  value = "|STATS accountname destinationprocessname message resourcecustomfield8 eventoutcome 
+" readonly >
+  <button onclick="phssce()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>This policy checks how quickly a process that spawned werfault.exe 
+  (process that reports errors in windows) spawns another process after werfault. If processes such as conhost.exe, 
+  cmd.exe or any random application spawns werfault.exe and spawns another process within a very short time after werfault, 
+  then it might indicate that the process is trying to gain access to system level priveleges.</p>
+<br>
+</div>
+</li>
+
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Possible Privelege Enumeration</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "ppe"
+  value = "|STATS accountname destinationprocessname message resourcecustomfield8 eventoutcome 
+" readonly >
+  <button onclick="ppe()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>-</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Possible Port Scan From External IP Address</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "ppsfeia"
+  value = "|STATS accountname ipaddress deviceaction devicehostname destinationaddress
+" readonly >
+  <button onclick="ppsfeia()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Make sure that the deviceaction is blocked.</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Possible Lateral Movement Observed over Network </button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "plmoon"
+  value = "|STATS accountname sourceaddress destinationaddress destinationport deviceoutboundinterface 
+" readonly >
+  <button onclick="plmoon()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check if admin account, 1-2 attempts are fine. Any random account + many attempts are a concern, need to threathunt. 
+  Check raw events, should mention VPN connection. </p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Rare Application for Known Protocols on Network</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "rapfkp"
+  value = "| STATS accountname ipaddress destinationaddress devicehostname deviceoutboundinterface applicationprotocol" readonly >
+  <button onclick="rapfkp()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check the Application Protocol and cross check it with the 
+  Destination Address to ensure the legitimacy of the traffic using VirusTotal/IPLocation.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Rare Host Accessed by Account - Logon Success</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "rhabalc"
+  value = "| STATS accountname ipaddress destinationprocessname eventoutcome devicecustomstring4 filepath" readonly >
+  <button onclick="rhabalc()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>-</p>
+<br>
+</div>
+</li> 
+
+<li class = "list-group-item"><button type="button" class="collapsible">Rare Port Used by Applications on Network Traffic - Next Gen Firewall</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "rpubaont"
+  value = "|STATS accountname ipaddress destinationaddress deviceaction destinationport devicecustomstring2 
+" readonly >
+  <button onclick="rpubaont()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>-</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Remote Interactive Logon to Domain Controller by Non-Admin Account</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "riltdc"
+  value = "-
+" readonly >
+  <button onclick="riltdc()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check if account is in list of admins.</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Service Account Performing an Interactive Logon - Microsoft Windows</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "sapil"
+  value = "|STATS accountname destinationprocessname eventoutcome sourcehostname resourcecustomfield8 filepath
+" readonly >
+  <button onclick="sapil()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check what the service account is for, then check what the processes running does and if it is running from the correct file path.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Spike in Number of Process Execution Using Explicit Credentials</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "sinope"
+  value = "-
+" readonly >
+  <button onclick="sinope()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check what processes are being executed and the account using credentials.</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Spike in Number of Successful Authentication Attempts </button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "sinosaa"
+  value = "|STATS ipaddress customnumber1
+" readonly >
+  <button onclick="sinosaa()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Users are accessing shared files. Check if customnumber1(logon type) is 3.</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Suspicious Executables on a Machine</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "susex"
+  value = "|STATS accountname filepath destinationprocessname eventoutcome " readonly >
+  <button onclick="susex()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Copy .exe filename and search it to see what it is. Check if the file is in the correct file path. </p>
+  <br>
+  <p>Click on the button below to view some commonly known executables:</p>
+  <br>
+  <a href="process.html">Go To Processes</a>
+  <br>
+  
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Suspicious Process Activity – Targeted – Executables File Creation Analytic</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "spat"
+  value = "|STATS accountname destinationprocessname filepath message" readonly >
+  <button onclick="spat()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check the Destination Process Name correlates with the Filepath and what the message says.</p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Traffic to Known Attacker/Repeat Attack Foreign</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "ttka"
+  value = "|STATS message requestcontext devicecustomstring3 ipaddress 
+" readonly >
+  <button onclick="ttka()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>VPN connections. Check if IPaddresses are clean.</p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Traffic to Known Malicious Domains</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "maldom"
+  value = "|STATS sourceaddress destinationaddress destinationhostname destinationport deviceoutboundinterface deviceaction" readonly >
+  <button onclick="maldom()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Monitor IP addresses and destinationhostnames on VirusTotal, Recorded Future and MXtoolbox.</p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li>
+
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Traffic to Known Malicious IP addresses</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "malip"
+  value = "|STATS sourceaddress destinationaddress destinationhostname destinationport deviceoutboundinterface deviceaction" readonly >
+  <button onclick="malip()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Monitor IP addresses and destinationhostnames on VirusTotal, Recorded Future and MXtoolbox.</p>
+  <br>
+<div class = "textbox">
+<p>Click on the button below to go to the tools page to search IPs and Domains.</p>
+<br>
+<a href="tools.html">Go to Tools</a>
+<br>
+<br>
+</div>
+</div>
+</li> 
+
+<li class = "list-group-item"><button type="button" class="collapsible">Usage of Potential Process Hollowing Executable to Run or Access Malicious Payload</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "uopphe"
+  value = "| STATS accountname destinationaddress deviceaction" readonly >
+  <button onclick="uopphe()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>- </p>
+<br>
+</div>
+</li>
+
+<li class = "list-group-item"><button type="button" class="collapsible">Use of Explicit Credentials - Account Sharing</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "uoecas"
+  value = "|STATS accountname message destinationusername eventoutcome 
+" readonly >
+  <button onclick="uoecas()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check the ADMINISTRATOR accounts history to see if there are multiple failed logins before the event, if there are, it is a concern.</p>
+<br>
+</div>
+</li>  
+
+<li class = "list-group-item"><button type="button" class="collapsible">User Account Unlocking for VIP User Account </button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "uaufvua"
+  value = "|STATS accountname destinationusername message eventoutcome sourceusername
+" readonly >
+  <button onclick="uaufvua()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Check sourceusername and destinationusername.</p>
+<br>
+</div>
+</li>
+
+
+<li class = "list-group-item"><button type="button" class="collapsible">Windows Activity By Terminated Accounts</button>
+<div class="content1">
+  <br>
+  <div class = "container2">
+  Spotter Search:
+  <br>
+  <br>
+  <div class = "copy-text">
+  <br>
+  <input type="text" class="text" id= "wabtm"
+  value = "|STATS message eventoutcome
+" readonly >
+  <button onclick="wabtm()" Copy> 
+    <ion-icon name="clipboard-outline">content_paste</ion-icon>
+  </button>
+  </div>
+  <br>
+  </div>
+  <br>
+  Details: <br>
+  <br>
+  <p>Right click on account name and run a spotter search, change accout name to destinationprocessname and add "|STATS message eventoutcome" to see if the account 
+  was re-enabled.</p>
+<br>
+</div>
+</li>
+</ul>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+ 
+</body>
+
+</html>
